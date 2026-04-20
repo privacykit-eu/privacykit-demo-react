@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/png" href="/favicon.png" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="index.css">
+  <title>PrivacyKit React Demo</title>
+  <!-- Add PrivacyKit web components: consent-dialog, consent-guard, consent-missing -->
+  <script type="module" src="https://cdn.privacykit.eu/privacykit/privacykit.esm.js"></script>
+  <script nomodule src="https://cdn.privacykit.eu/privacykit/privacykit.js"></script>
+  <!-- Add PrivacyKit JavaScript API for frameworks like React and Vue and Plain JS (optional) -->
+  <script type="module" src="https://cdn.privacykit.eu/privacykit/index.esm.js"></script>
+</head>
+
+<body>
+  <noscript>This demo requires JavaScript to render the consent UI and run guarded scripts.</noscript>
+
+  <!-- Add consent-guard(s) to block/load 3rd party scripts -->
+  <consent-guard consent="analytics+marketing">
+    <script type="text/plain" data-src="https://www.googletagmanager.com/gtm.js?id=G-XZ20MQ3ZHE"></script>
+  </consent-guard>
+
+  <consent-guard consent="preferences">
+    <script type="text/plain">
+        window.preferencesScript = {
+          message: 'Preferences script loaded.',
+        };
+      </script>
+  </consent-guard>
+  <consent-guard consent="analytics">
+    <script type="text/plain">
+        window.analyticsScript = {
+          message: 'Analytics script loaded.',
+        };
+      </script>
+  </consent-guard>
+  <consent-guard consent="marketing">
+    <script type="text/plain">
+        window.marketingScript = {
+          message: 'Marketing script loaded.',
+        };
+      </script>
+  </consent-guard>
+
+  <!-- Add consent-dialog -->
+  <consent-dialog variant="modern">
+    <img slot="dialog-logo" width="100px" src="/logo.png" alt="Company logo" />
+  </consent-dialog>
+
+  <div id="root"></div>
+  <script type="module" src="/src/main.tsx"></script>
+
+</body>
+
+</html>
